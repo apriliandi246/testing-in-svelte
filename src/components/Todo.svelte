@@ -23,6 +23,7 @@
    <button
       class="delete_all"
       on:click={deleteAllItems}
+      class:disabled={items.length === 0}
       disabled={items.length === 0}>delete all items</button
    >
 
@@ -32,10 +33,10 @@
 
    <div class="items">
       {#each items as item}
-         <p>
-            {item.todo}
+         <div class="item">
+            <p>{item.todo}</p>
             <span on:click={() => deleteItem(item.id)} class="delete">🗑️</span>
-         </p>
+         </div>
       {/each}
    </div>
 </div>
@@ -48,6 +49,11 @@
       margin: 60px auto;
       flex-direction: column;
       justify-content: center;
+   }
+
+   .item {
+      display: flex;
+      align-items: center;
    }
 
    button {
@@ -70,5 +76,9 @@
 
    span {
       cursor: pointer;
+   }
+
+   .disabled {
+      cursor: default;
    }
 </style>
